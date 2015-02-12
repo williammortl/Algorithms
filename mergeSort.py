@@ -3,7 +3,6 @@
 
 # imports
 import sys
-import math
 
 # merge function, both lists need to be sorted
 def merge(list1, list2):
@@ -50,6 +49,6 @@ if __name__ == "__main__":
 		print("Example: python mergeSort.py \"9,111,2,31,1,0\"\r\n")
 	else:
 		listToSort = map(int, sys.argv[1].split(","))
-		print("\r\nSorting: " + str(listToSort) + "...")
+		print("\r\nSorting: " + str(listToSort))
 		print("Sorted list: " + str(mergeSort(listToSort)) + "\r\n")
 		

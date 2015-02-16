@@ -10,7 +10,7 @@ import mergeSort
 import heap
 
 # heap sort, use maxComparator for ascending and minComparator for descending
-def heapSort(list, i, j):
+def heapSort(list):
 	list = heap.buildHeap(list, heap.maxComparator)
 	s = len(list)
 	for i in xrange((s - 1), 0, -1):
@@ -31,7 +31,7 @@ if __name__ == "__main__":
 		listToSort = map(int, sys.argv[1].split(","))
 		print(("\r\nSorting:\r\n%s") % str(listToSort))
 		mergeSorted = mergeSort.mergeSort(listToSort)
-		heapSorted = heapSort(listToSort, 0, len(listToSort) - 1)
+		heapSorted = heapSort(listToSort)
 		print(("Merge Sorted list:\r\n%s") % str(mergeSorted))
 		print(("Heap Sorted list:\r\n%s") % str(heapSorted))
 		print(("Lists equal? %s\r\n") % str(mergeSorted == heapSorted))

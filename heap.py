@@ -1,5 +1,7 @@
 # Heap Building Algorithms
 # Implemented by William M Mortl
+# Coded for Python 2.7.9
+# To build heap: O(log n)
 
 # imports
 import sys

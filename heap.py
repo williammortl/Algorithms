@@ -5,7 +5,6 @@
 
 # imports
 import sys
-from random import randint
 import mergeSort
 
 # get the parent of the node at i

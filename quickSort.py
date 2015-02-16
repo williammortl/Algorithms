@@ -6,7 +6,7 @@ import sys
 from random import randint
 import mergeSort
 
-# in place quick sort function, quick sort range [i, j]
+# in place quick sort function, quick sort range [i, j] <- inclusive
 def quickSort(list, i, j):
 	k = j - i
 	if (k == 1):
@@ -41,9 +41,9 @@ if __name__ == "__main__":
 		print("Example: python quickSort.py \"9,111,2,31,1,0\"\r\n")
 	else:
 		listToSort = map(int, sys.argv[1].split(","))
-		print("\r\nSorting: " + str(listToSort))
+		print(("\r\nSorting:\r\n%s") % str(listToSort))
 		mergeSorted = mergeSort.mergeSort(listToSort)
 		quickSorted = quickSort(listToSort, 0, len(listToSort) - 1)
-		print("Merge Sorted list: " + str(mergeSorted))
-		print("Quick Sorted list: " + str(quickSorted))
-		print("Lists equal? " + str(mergeSorted == quickSorted) + "\r\n") 
+		print(("Merge Sorted list:\r\n%s") % str(mergeSorted))
+		print(("Quick Sorted list:\r\n%s") % str(quickSorted))
+		print(("Lists equal? %s\r\n") % str(mergeSorted == quickSorted))

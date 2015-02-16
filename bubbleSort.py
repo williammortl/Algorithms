@@ -23,9 +23,9 @@ if __name__ == "__main__":
 		print("Example: python bubbleSort.py \"9,111,2,31,1,0\"\r\n")
 	else:
 		listToSort = map(int, sys.argv[1].split(","))
-		print("\r\nSorting: " + str(listToSort))
+		print(("\r\nSorting:\r\n%s") % str(listToSort))
 		mergeSorted = mergeSort.mergeSort(listToSort)
 		bubbleSorted = bubbleSort(listToSort)
-		print("Merge Sorted list: " + str(mergeSorted))
-		print("Bubble Sorted list: " + str(bubbleSorted))
-		print("Lists equal? " + str(mergeSorted == bubbleSorted) + "\r\n") 
+		print(("Merge Sorted list:\r\n%s") % str(mergeSorted))
+		print(("Bubble Sorted list:\r\n%s") % str(bubbleSorted))
+		print(("Lists equal? %s\r\n") % str(mergeSorted == bubbleSorted))

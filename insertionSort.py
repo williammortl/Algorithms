@@ -30,9 +30,9 @@ if __name__ == "__main__":
 		print("Example: python insertionsSort.py \"9,111,2,31,1,0\"\r\n")
 	else:
 		listToSort = map(int, sys.argv[1].split(","))
-		print("\r\nSorting: " + str(listToSort))
+		print(("\r\nSorting:\r\n%s") % str(listToSort))
 		mergeSorted = mergeSort.mergeSort(listToSort)
 		insertionSorted = insertionSort(listToSort)
-		print("Merge Sorted list: " + str(mergeSorted))
-		print("Insertion Sorted list: " + str(insertionSorted))
-		print("Lists equal? " + str(mergeSorted == insertionSorted) + "\r\n") 
+		print(("Merge Sorted list:\r\n%s") % str(mergeSorted))
+		print(("Insertion Sorted list:\r\n%s") % str(insertionSorted))
+		print(("Lists equal? %s\r\n") % str(mergeSorted == insertionSorted))

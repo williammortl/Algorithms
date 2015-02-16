@@ -13,7 +13,8 @@ import heap
 def heapSort(list):
 	list = heap.buildHeap(list, heap.maxComparator)
 	s = len(list)
-	for i in xrange((s - 1), 0, -1):
+	listLength = s
+	for i in xrange((listLength - 1), 0, -1):
 		tmp = list[0]
 		list[0] = list[i]
 		list[i] = tmp

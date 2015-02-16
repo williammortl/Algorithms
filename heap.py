@@ -43,7 +43,7 @@ def heapify(list, i, comparator, s):
 # converts a list to a heap
 def buildHeap(list, comparator):
 	s = len(list)
-	midpoint = (len(list) / 2) - 1
+	midpoint = (s / 2) - 1
 	for i in xrange(midpoint, -1, -1):
 		heapify(list, i, comparator, s)
 	return list

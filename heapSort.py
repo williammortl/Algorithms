@@ -5,7 +5,6 @@
 
 # imports
 import sys
-from random import randint
 import mergeSort
 import heap
 

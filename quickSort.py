@@ -1,7 +1,7 @@
 # Quick Sort Algorithm
 # Implemented by William M Mortl
 # Coded for Python 2.7.9
-# O(n^2), however, this on average is the fastest sorting routine
+# O(n^2), however, this on average is the fastest sorting algorithm
 
 # imports
 import sys

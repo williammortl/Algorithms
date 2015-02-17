@@ -62,11 +62,11 @@ def printHeap(list):
 	l = left(list, current)
 	r = right(list, current)
 	print("Printing the entire heap:")
-	print("------------------------------------------------------------")
+	print("-" * 50)
 	while ((l < s) and (r < s)):
 		print(("  Parent:\t[%s] %s") % (str(current), str(list[current])))
 		print(("Children:\t[%s] %s - [%s] %s") % (str(l), str(list[l]), str(r), str(list[r])))
-		print("------------------------------------------------------------")
+		print("-" * 50)
 		current = current + 1
 		l = left(list, current)
 		r = right(list, current)

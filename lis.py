@@ -13,6 +13,7 @@ def longestIncreasingSubsequence(list):
 	searchResults = zero2dMatrix(s)
 	longestStartingPoint = s - 1
 	searchResults[longestStartingPoint][longestStartingPoint] = 1
+	lis = []
 	for i in xrange((s - 2), -1, -1):
 		longestLength = 0
 		for j in range((i + 1), s):
@@ -23,7 +24,6 @@ def longestIncreasingSubsequence(list):
 					longestLength = sumVal + 1
 					searchResults[i] = copy.deepcopy(searchResults[j])
 					searchResults[i][i] = 1
-	lis = []
 	for j in range(0, s):
 		if (searchResults[longestStartingPoint][j] == 1):
 			lis.append(list[j])

@@ -10,7 +10,7 @@ import copy
 # longest increasing subsequence, uses dynamic programming
 def longestIncreasingSubsequence(list):
 	s = len(list)
-	searchResults = zero2dMatrix(s)
+	searchResults = zero2dMatrix(s, s)
 	longestStartingPoint = s - 1
 	searchResults[longestStartingPoint][longestStartingPoint] = 1
 	lis = []
@@ -30,10 +30,10 @@ def longestIncreasingSubsequence(list):
 	return lis
 
 # create 2d matrix of zeros, have to create different sublists to avoid byref problems
-def zero2dMatrix(size):
+def zero2dMatrix(rows, cols):
 	output = []
-	for i in range(0, size):
-		output.append([0] * size)
+	for i in range(0, rows):
+		output.append([0] * cols)
 	return output
 
 # main entry point

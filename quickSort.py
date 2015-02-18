@@ -5,7 +5,7 @@
 
 # imports
 import sys
-from random import randint
+import random
 import mergeSort
 
 # in place quick sort function, quick sort range [i, j] <- inclusive
@@ -18,7 +18,7 @@ def quickSort(list, i, j):
 			list[j] = tmp
 	elif (k > 1):
 		i0 = i
-		p = randint(i, j)
+		p = random.randint(i, j)
 		tmp = list[j]
 		list[j] = list[p]
 		list[p] = tmp

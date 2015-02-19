@@ -1,7 +1,7 @@
 # Longest Increasing Subsequence Algorithm
 # Implemented by William M Mortl
 # Coded for Python 2.7.9
-# O(n^2)
+# O(n ^ 2)
 
 # imports
 import sys

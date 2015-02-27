@@ -2,6 +2,7 @@
 # Implemented by William M Mortl
 # Coded for Python 2.7.9
 # O(n log n)
+# python mergeSort.py "9,111,2,31,7,0,5,4,3,1,100001,32,31,27,16,15,999,3,3,3,3,100000000,7"
 
 # imports
 import sys
@@ -31,15 +32,15 @@ def merge(list1, list2):
 # merge sort function
 def mergeSort(listToSort):
 	output = listToSort
-	listLength = len(listToSort)
-	if (listLength == 2):
+	s = len(listToSort)
+	if (s == 2):
 		output = listToSort
 		if (output[0] > output[1]):
 			output.reverse()
-	elif (listLength > 2):
-		splitPoint = int(listLength / 2)
+	elif (s > 2):
+		splitPoint = int(s / 2)
 		leftList = mergeSort(listToSort[0 : splitPoint])
-		rightList = mergeSort(listToSort[splitPoint : listLength])
+		rightList = mergeSort(listToSort[splitPoint : s])
 		output = merge(leftList, rightList)
 	return output
 

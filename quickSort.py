@@ -2,38 +2,39 @@
 # Implemented by William M Mortl
 # Coded for Python 2.7.9
 # O(n ^ 2), however, this on average is the fastest sorting algorithm
+# python quickSort.py "9,111,2,31,7,0,5,4,3,1,100001,32,31,27,16,15,999,3,3,3,3,100000000,7"
 
 # imports
-import sys
-import random
+import copy
 import mergeSort
+import random
+import sys
 
 # in place quick sort function, quick sort range [i, j] <- inclusive
-def quickSort(list, i, j):
+def quickSort(listToSort, i, j):
 	k = j - i
 	if (k == 1):
-		if (list[i] > list[j]):
-			tmp = list[i]
-			list[i] = list[j]
-			list[j] = tmp
+		if (listToSort[i] > listToSort[j]):
+			tmp = listToSort[i]
+			listToSort[i] = listToSort[j]
+			listToSort[j] = tmp
 	elif (k > 1):
-		i0 = i
 		p = random.randint(i, j)
-		tmp = list[j]
-		list[j] = list[p]
-		list[p] = tmp
-		p = j
-		while (i < p):
-			if (list[i] >= list[p]):
-				tmp = list[i]
-				list[i : p] = list[(i + 1) : (p + 1)]
-				list[p] = tmp
-				p = p - 1
-			else:
-				i = i + 1
-		quickSort(list, i0, p - 1)
-		quickSort(list, p + 1, j)
-	return list
+		tmp = listToSort[i]
+		listToSort[i] = listToSort[p]
+		listToSort[p] = tmp
+		i0 = i
+		p = i
+		start = p + 1
+		for i in range(start, (j + 1)):
+			if (listToSort[i] <= listToSort[p]):
+				tmp = listToSort[i]
+				listToSort[(p + 1) : (i + 1)] = listToSort[p : i]
+				listToSort[p] = tmp
+				p = p + 1
+		quickSort(listToSort, i0, p - 1)
+		quickSort(listToSort, p + 1, j)
+	return listToSort
 
 # main entry point
 if __name__ == "__main__":
@@ -44,8 +45,8 @@ if __name__ == "__main__":
 	else:
 		listToSort = map(int, sys.argv[1].split(","))
 		print(("\r\nSorting:\r\n%s") % str(listToSort))
-		mergeSorted = mergeSort.mergeSort(listToSort)
-		quickSorted = quickSort(listToSort, 0, len(listToSort) - 1)
+		mergeSorted = mergeSort.mergeSort(copy.deepcopy(listToSort))
+		quickSorted = quickSort(copy.deepcopy(listToSort), 0, len(listToSort) - 1)
 		print(("Merge Sorted list:\r\n%s") % str(mergeSorted))
 		print(("Quick Sorted list:\r\n%s") % str(quickSorted))
 		print(("Lists equal? %s\r\n") % str(mergeSorted == quickSorted))

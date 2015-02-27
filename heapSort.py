@@ -2,24 +2,26 @@
 # Implemented by William M Mortl
 # Coded for Python 2.7.9
 # O(n log n)
+# python heapSort.py "9,111,2,31,7,0,5,4,3,1,100001,32,31,27,16,15,999,3,3,3,3,100000000,7"
 
 # imports
-import sys
-import mergeSort
+import copy
 import heap
+import mergeSort
+import sys
 
 # heap sort, use maxComparator for ascending and minComparator for descending
-def heapSort(list):
-	list = heap.buildHeap(list, heap.maxComparator)
-	s = len(list)
+def heapSort(listToSort):
+	listToSort = heap.buildHeap(listToSort, heap.maxComparator)
+	s = len(listToSort)
 	listLength = s
 	for i in xrange((listLength - 1), 0, -1):
-		tmp = list[0]
-		list[0] = list[i]
-		list[i] = tmp
+		tmp = listToSort[0]
+		listToSort[0] = listToSort[i]
+		listToSort[i] = tmp
 		s = s - 1
-		heap.heapify(list, 0, heap.maxComparator, s)
-	return list
+		heap.heapify(listToSort, 0, heap.maxComparator, s)
+	return listToSort
 
 # main entry point
 if __name__ == "__main__":
@@ -30,8 +32,8 @@ if __name__ == "__main__":
 	else:
 		listToSort = map(int, sys.argv[1].split(","))
 		print(("\r\nSorting:\r\n%s") % str(listToSort))
-		mergeSorted = mergeSort.mergeSort(listToSort)
-		heapSorted = heapSort(listToSort)
+		mergeSorted = mergeSort.mergeSort(copy.deepcopy(listToSort))
+		heapSorted = heapSort(copy.deepcopy(listToSort))
 		print(("Merge Sorted list:\r\n%s") % str(mergeSorted))
 		print(("Heap Sorted list:\r\n%s") % str(heapSorted))
 		print(("Lists equal? %s\r\n") % str(mergeSorted == heapSorted))

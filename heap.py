@@ -2,10 +2,12 @@
 # Implemented by William M Mortl
 # Coded for Python 2.7.9
 # To build heap: O(log n)
+# python heap.py + "9,111,2,31,7,0,5,4,3,1,100001,32,31,27,16,15,999,3,3,3,3,100000000,7"
 
 # imports
-import sys
+import copy
 import mergeSort
+import sys
 
 # get the parent of the node at i
 def parent(list, i):
@@ -67,12 +69,12 @@ def heapify(list, i, comparator, s):
 	return list
 
 # converts a list to a heap
-def buildHeap(list, comparator):
-	s = len(list)
+def buildHeap(listToHeap, comparator):
+	s = len(listToHeap)
 	midpoint = (s / 2) - 1
 	for i in xrange(midpoint, -1, -1):
-		list = heapify(list, i, comparator, s)
-	return list
+		listToHeap = heapify(listToHeap, i, comparator, s)
+	return listToHeap
 
 # insert into heap
 def insert(list, number, comparator):
@@ -133,10 +135,10 @@ if __name__ == "__main__":
 		print("Example: python heap.py + \"9,111,2,31,1,0\"\r\n")
 	else:
 		maxOrMin = "Min" if sys.argv[1].strip() == "-" else "Max"
-		listToHeap = map(int, sys.argv[2].split(","))
-		print(("\r\nBuilding a heap from:\r\n%s") % str(listToHeap))
+		heapList = map(int, sys.argv[2].split(","))
+		print(("\r\nBuilding a heap from:\r\n%s") % str(heapList))
 		comparator = minComparator if (maxOrMin == "Min") else maxComparator
-		heapList = buildHeap(listToHeap, comparator)
+		heapList = buildHeap(heapList, comparator)
 		print(("%s heap:\r\n%s") % (maxOrMin, str(heapList)))
 		numberToInsert = 777777777777
 		heapList = insert(heapList, numberToInsert, comparator)

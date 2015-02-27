@@ -2,27 +2,30 @@
 # Implemented by William M Mortl
 # Coded for Python 2.7.9
 # O(n ^ 2)
+# python insertionSort.py "9,111,2,31,7,0,5,4,3,1,100001,32,31,27,16,15,999,3,3,3,3,100000000,7"
 
 # imports
-import sys
+import copy
 import mergeSort
+import sys
 
 # in place insertion sort
-def insertionSort(list):
+def insertionSort(listToSort):
+	s = len(listToSort)
 	itr = 1
-	while(itr < len(list)):
-		valInsert = list[itr]
+	while(itr < s):
+		valInsert = listToSort[itr]
 		for i in xrange((itr - 1), -1, -1):
-			valCompare = list[i]
+			valCompare = listToSort[i]
 			if (valCompare < valInsert):
-				list[(i + 2) : (itr + 1)] = list[(i + 1): (itr)]
-				list[i + 1] = valInsert;
+				listToSort[(i + 2) : (itr + 1)] = listToSort[(i + 1): (itr)]
+				listToSort[i + 1] = valInsert;
 				break
 			elif ((i == 0) and (valCompare > valInsert)):
-				list[1 : (itr + 1)] = list[i : itr]
-				list[i] = valInsert;
+				listToSort[1 : (itr + 1)] = listToSort[i : itr]
+				listToSort[i] = valInsert;
 		itr = itr + 1
-	return list
+	return listToSort
 
 # main entry point
 if __name__ == "__main__":
@@ -33,8 +36,8 @@ if __name__ == "__main__":
 	else:
 		listToSort = map(int, sys.argv[1].split(","))
 		print(("\r\nSorting:\r\n%s") % str(listToSort))
-		mergeSorted = mergeSort.mergeSort(listToSort)
-		insertionSorted = insertionSort(listToSort)
+		mergeSorted = mergeSort.mergeSort(copy.deepcopy(listToSort))
+		insertionSorted = insertionSort(copy.deepcopy(listToSort))
 		print(("Merge Sorted list:\r\n%s") % str(mergeSorted))
 		print(("Insertion Sorted list:\r\n%s") % str(insertionSorted))
 		print(("Lists equal? %s\r\n") % str(mergeSorted == insertionSorted))

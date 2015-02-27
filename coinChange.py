@@ -2,10 +2,11 @@
 # Implemented by William M Mortl
 # Coded for Python 2.7.9
 # O(n ^ 2)
+# python coinChange.py 6 "1,4,3"
 
 # imports
-import sys
 import lis
+import sys
 
 # coin change algorithm, uses dynamic programming
 def coinChange(amount, coins):

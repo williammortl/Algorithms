@@ -2,12 +2,13 @@
 # Implemented by William M Mortl
 # Coded for Python 2.7.9
 # O(n ^ 2)
+# python lis.py "9,111,2,31,7,0,5,4,3,1,100001,32,31,27,16,15,999,3,3,3,3,100000000,7"
 
 # imports
-import sys
 import copy
+import sys
 
-# longest increasing subsequence, uses dynamic programming
+# longest increasing subsequence, uses dynamic programming and memoization
 def longestIncreasingSubsequence(list):
 	s = len(list)
 	searchResults = zero2dMatrix(s, s)

@@ -82,7 +82,7 @@ def stringToPoints(strList):
 # main entry point
 if __name__ == "__main__":
 	if (len(sys.argv) < 2):
-		print("\r\nGift Wrapping Convex Hull Algorithm by William M Mortl")
+		print("\r\nGraham Scan Convex Hull Algorithm by William M Mortl")
 		print("Usage: python convexHull.py \"{[x coordinate, y coordinate], [x2, y2], ...}\"")
 		print("Example: python convexHull.py \"[1,1],[3,7],[9,9],[10,10],[0,0],[2,2],[10,2]\"\r\n")
 	else:

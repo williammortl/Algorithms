@@ -1,7 +1,7 @@
 # Coin Change Algorithm
 # Implemented by William M Mortl
 # Coded for Python 2.7.9
-# O(n ^ 2)
+# O(coins * amount)
 # python coinChange.py 6 "1,4,3"
 
 # imports
@@ -24,7 +24,7 @@ def coinChange(amount, coins):
 					coin = i
 		C[p] = minVal
 		S[p] = coin
-	return makeChange(S, coins, amount)
+	return [makeChange(S, coins, amount), C, S]
 
 # make change from the dynamic programming results
 def makeChange(S, coins, amount):
@@ -47,6 +47,8 @@ if __name__ == "__main__":
 		if (min(currencies) > amountToChange):
 			print("\r\nCannot change, coins too big!\r\n")
 		else:
-			change = coinChange(amountToChange, currencies)
+			[change, C, S] = coinChange(amountToChange, currencies)
+			print(("\r\nC matrix:\r\n%s") % str(C))
+			print(("S matrix:\r\n%s") % str(S))
 			print(("\r\nChanging %s:\r\n%s") % (str(amountToChange), str(change)))
 			print(("Sum of coins: %s\r\n") % str(sum(change)))

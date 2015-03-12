@@ -6,7 +6,7 @@
 
 # imports
 import copy
-import mergeSort
+from mergeSort import mergeSort
 import sys
 
 # in place insertion sort
@@ -36,7 +36,7 @@ if __name__ == "__main__":
 	else:
 		listToSort = map(int, sys.argv[1].split(","))
 		print(("\r\nSorting:\r\n%s") % str(listToSort))
-		mergeSorted = mergeSort.mergeSort(copy.deepcopy(listToSort))
+		mergeSorted = mergeSort(copy.deepcopy(listToSort))
 		insertionSorted = insertionSort(copy.deepcopy(listToSort))
 		print(("Merge Sorted list:\r\n%s") % str(mergeSorted))
 		print(("Insertion Sorted list:\r\n%s") % str(insertionSorted))

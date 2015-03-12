@@ -5,7 +5,6 @@
 # python coinChange.py 6 "1,4,3"
 
 # imports
-import lis
 import sys
 
 # coin change algorithm, uses dynamic programming

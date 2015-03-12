@@ -6,8 +6,8 @@
 
 # imports
 import copy
+from mergeSort import mergeSort
 import sys
-import mergeSort
 
 # in place bubble sort
 def bubbleSort(listToSort):
@@ -28,7 +28,7 @@ if __name__ == "__main__":
 	else:
 		listToSort = map(int, sys.argv[1].split(","))
 		print(("\r\nSorting:\r\n%s") % str(listToSort))
-		mergeSorted = mergeSort.mergeSort(copy.deepcopy(listToSort))
+		mergeSorted = mergeSort(copy.deepcopy(listToSort))
 		bubbleSorted = bubbleSort(copy.deepcopy(listToSort))
 		print(("Merge Sorted list:\r\n%s") % str(mergeSorted))
 		print(("Bubble Sorted list:\r\n%s") % str(bubbleSorted))

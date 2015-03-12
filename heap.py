@@ -6,7 +6,6 @@
 
 # imports
 import copy
-import mergeSort
 import sys
 
 # get the parent of the node at i

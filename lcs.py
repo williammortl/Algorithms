@@ -5,14 +5,13 @@
 # python lcs.py "9,111,2,31,7,0,5,4,3,1,100001,32,31,27,16,15,999,3,3,3,3,100000000,7" "22,7,0,1,16,15,8,8,8,88,8,8,3,6,1,7"
 
 # imports
-import lis
 import sys
 
 # longest common subsequence, uses dynamic programming
 def longestCommonSubsequence(list1, list2):
 	s1 = len(list1)
 	s2 = len(list2)
-	results = lis.zero2dMatrix(s1 + 1, s2 + 1)
+	results = zero2dMatrix(s1 + 1, s2 + 1)
 	for i in range(1, s1 + 1):
 		for j in range(1, s2 + 1):
 			if (list1[i - 1] == list2[j - 1]):
@@ -43,6 +42,13 @@ def extractCommonSubsequence(results, rowList):
 			j = j - 1
 	return lcs
 
+# create 2d matrix of zeros, have to create different sublists to avoid byref problems
+def zero2dMatrix(rows, cols):
+	output = []
+	for i in range(0, rows):
+		output.append([0] * cols)
+	return output
+	
 # main entry point
 if __name__ == "__main__":
 	if (len(sys.argv) < 3):

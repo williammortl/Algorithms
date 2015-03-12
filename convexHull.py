@@ -28,7 +28,7 @@ def convexHull(points):
 		hullPoints.append(pointsSorted[i])
 	return [hullPoints, points[bottomPoint], pointsSorted]
 
-# gives the angle of the point in radians
+# gives the angle of the point in radians with respect to a horizontal line traversing the base point
 def radianAngle(basePoint, point):
 	radians90 = math.radians(90)
 	alteredPoint = copy.deepcopy(point)

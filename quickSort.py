@@ -6,7 +6,7 @@
 
 # imports
 import copy
-import mergeSort
+from mergeSort import mergeSort
 import random
 import sys
 
@@ -45,7 +45,7 @@ if __name__ == "__main__":
 	else:
 		listToSort = map(int, sys.argv[1].split(","))
 		print(("\r\nSorting:\r\n%s") % str(listToSort))
-		mergeSorted = mergeSort.mergeSort(copy.deepcopy(listToSort))
+		mergeSorted = mergeSort(copy.deepcopy(listToSort))
 		quickSorted = quickSort(copy.deepcopy(listToSort), 0, len(listToSort) - 1)
 		print(("Merge Sorted list:\r\n%s") % str(mergeSorted))
 		print(("Quick Sorted list:\r\n%s") % str(quickSorted))

@@ -7,7 +7,7 @@
 # imports
 import copy
 import heap
-import mergeSort
+from mergeSort import mergeSort
 import sys
 
 # heap sort, use maxComparator for ascending and minComparator for descending
@@ -32,7 +32,7 @@ if __name__ == "__main__":
 	else:
 		listToSort = map(int, sys.argv[1].split(","))
 		print(("\r\nSorting:\r\n%s") % str(listToSort))
-		mergeSorted = mergeSort.mergeSort(copy.deepcopy(listToSort))
+		mergeSorted = mergeSort(copy.deepcopy(listToSort))
 		heapSorted = heapSort(copy.deepcopy(listToSort))
 		print(("Merge Sorted list:\r\n%s") % str(mergeSorted))
 		print(("Heap Sorted list:\r\n%s") % str(heapSorted))

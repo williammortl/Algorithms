@@ -8,7 +8,7 @@
 import sys
 import math
 
-# modular exponentiation
+# modular exponentiation x ^ y mod N
 def modularExponentiation(x, y, N):
 	ret = 1
 	if (y != 0):

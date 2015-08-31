@@ -8,7 +8,7 @@
 import sys
 import math
 
-# modular exponentiation
+# euclid factorizing algorithm
 def euclid(x, y):
 	if (x < y):
 		t = x

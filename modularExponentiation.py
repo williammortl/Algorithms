@@ -1,7 +1,7 @@
 # Modular Exponentiation Algorithm
 # Implemented by William M Mortl
 # Coded for Python 2.7.9
-# O((log N) ^ 2)
+# O(n^3)
 # python modularExponentiation.py 5 2 17
 
 # imports

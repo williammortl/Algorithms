@@ -12,12 +12,15 @@ import random
 
 # Fermat's little theorem primality checker
 def fermatTest(N):
-	ret = "composite"
-	a = random.randint(1, N - 1)
-	v = modularExponentiation.modularExponentiation(a, N - 1, N)
-	if (v == 1):
-		ret = "prime"
-	return ret
+	ret = "prime"
+	numChecks = random.randint(1, N - 2)
+	for i in range(1, numChecks):
+		a = random.randint(1, N - 1)
+		v = modularExponentiation.modularExponentiation(a, N - 1, N)
+		if (v != 1):
+			ret = "composite"
+			break
+	return (ret, i)
 
 # main entry point
 if __name__ == "__main__":
@@ -27,5 +30,5 @@ if __name__ == "__main__":
 		print("Example: python fermatTest.py 5\r\n")
 	else:
 		N = int(sys.argv[1])
-		p = fermatTest(N)
-		print(("\r\nIs %s prime according to Fermat's little theorem? %s\r\n") % (str(N), str(p)))
+		(p, numChecks) = fermatTest(N)
+		print(("\r\n%s is a %s number. %s checks were run.\r\n") % (str(N), p, str(numChecks)))

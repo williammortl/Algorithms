@@ -12,8 +12,13 @@ import random
 
 # Fermat's little theorem primality checker
 def fermatTest(N):
+	if (N <= 1):
+		return ("neither", 0)
 	ret = "prime"
-	numChecks = random.randint(1, N - 2)
+	if (N <= 4):
+		numChecks = 2
+	else:
+		numChecks = random.randint(2, N - 2)
 	for i in range(1, numChecks):
 		a = random.randint(1, N - 1)
 		v = modularExponentiation.modularExponentiation(a, N - 1, N)
@@ -26,7 +31,7 @@ def fermatTest(N):
 if __name__ == "__main__":
 	if (len(sys.argv) < 2):
 		print("\r\nFermat's Little Theorem Primality Test Algorithm by William M Mortl")
-		print("Usage: python fermatTest.py {value1} {value2}")
+		print("Usage: python fermatTest.py {value to test for primality}")
 		print("Example: python fermatTest.py 5\r\n")
 	else:
 		N = int(sys.argv[1])

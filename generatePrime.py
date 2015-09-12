@@ -15,6 +15,7 @@ def generatePrime(digits):
 	rangeFrom = int(math.pow(10, digits - 2))
 	rangeTo = int(math.pow(10, digits - 1)) - 1
 	foundPrime = False
+	numTries = 0
 	while (foundPrime == False):
 		start = random.randint(rangeFrom, rangeTo)
 		ending = primeEnds[random.randint(0, 3)]
@@ -22,7 +23,8 @@ def generatePrime(digits):
 		(testResult, numChecks) = fermatTest.fermatTest(p)
 		if (testResult == "prime"):
 			foundPrime = True
-	return p
+		numTries += 1
+	return (p, numTries)
 
 # main entry point
 if __name__ == "__main__":
@@ -35,6 +37,6 @@ if __name__ == "__main__":
 		if (digits < 2):
 			print("\r\nMust be at least 2 digits\r\n")
 		else:
-			p = generatePrime(digits)
-			print(("\r\nPrime number: %s\r\n") % str(p))
+			(p, numTries) = generatePrime(digits)
+			print(("\r\nPrime number: %s found in %s tries\r\n") % (str(p), str(numTries)))
 

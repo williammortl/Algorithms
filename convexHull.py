@@ -5,7 +5,7 @@
 # python convexHull.py "[1,1],[3,7],[9,9],[10,10],[0,0], [2, 2], [10,2], [-10, 1], [-5,6], [1,1]"
 
 # imports
-import copy
+from copy import deepcopy
 import math
 import sys
 
@@ -17,7 +17,7 @@ def convexHull(points):
 	for i in range(1, s):
 		if (points[i][1] < points[bottomPoint][1]):
 			bottomPoint = i
-	pointsSorted = copy.deepcopy(points)
+	pointsSorted = deepcopy(points)
 	del pointsSorted[bottomPoint]
 	pointsSorted = sorted(pointsSorted, key = lambda x: radianAngle(points[bottomPoint], x))
 	pointsSorted.insert(0, points[bottomPoint])
@@ -31,7 +31,7 @@ def convexHull(points):
 # gives the angle of the point in radians with respect to a horizontal line traversing the base point
 def radianAngle(basePoint, point):
 	radians90 = math.radians(90)
-	alteredPoint = copy.deepcopy(point)
+	alteredPoint = deepcopy(point)
 	alteredPoint = [alteredPoint[0] + basePoint[0], alteredPoint[1] + basePoint[1]]
 	if (alteredPoint[0] == 0):
 		return radians90
@@ -90,8 +90,8 @@ if __name__ == "__main__":
 		if (len(hullPoints) < 4):
 			print("\r\nYou must enter at least 5 points!\r\n")
 		else:
-			print(("\r\nLooking for the convex hull of points:\r\n%s") % str(hullPoints))
+			print(("\r\nLooking for the convex hull of points:\r\n%s\r\n") % str(hullPoints))
 			[hullPoints, bottomPoint, sortedPoints] = convexHull(hullPoints)
-			print(("Bottom most point:\r\n%s") % str(bottomPoint))
-			print(("Counterclockwise radially sorted points:\r\n%s") % str(sortedPoints))
+			print(("Bottom most point:\r\n%s\r\n") % str(bottomPoint))
+			print(("Counterclockwise radially sorted points:\r\n%s\r\n") % str(sortedPoints))
 			print(("Convex hull points:\r\n%s\r\n") % str(hullPoints))

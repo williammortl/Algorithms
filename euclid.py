@@ -6,7 +6,6 @@
 
 # imports
 import sys
-import math
 
 # euclid factorizing algorithm
 def euclid(x, y):

@@ -58,6 +58,6 @@ if __name__ == "__main__":
 	else:
 		list1 = map(int, sys.argv[1].split(","))
 		list2 = map(int, sys.argv[2].split(","))
-		print(("\r\nLooking for longest common subsequence of:\r\n%s\r\n%s") % (str(list1), str(list2)))
+		print(("\r\nLooking for longest common subsequence of:\r\n%s\r\n\r\n%s\r\n") % (str(list1), str(list2)))
 		lcs = longestCommonSubsequence(list1, list2)
 		print(("Longest common subsequence:\r\n%s\r\n") % str(lcs))

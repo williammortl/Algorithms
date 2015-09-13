@@ -3,18 +3,25 @@
 # Coded for Python 2.7.9
 
 # imports
+from datetime import datetime
+from mergeSort import mergeSort
+from random import randint
+from selectionSort import selectionSort
 import sys
-import random
-import datetime
-import selectionSort
 
 # build random list
-n = input("How long of a list? ")
+n = input("\r\nHow long of a list? ")
 l = []
 for i in range(0, n):
-	l.append(random.randint(0, 10 * n))
+	l.append(randint(0, 10 * n))
 
-# timestamp around sort
-print(datetime.datetime.now().time())
-v = selectionSort.selectionSort(l)
-print(datetime.datetime.now().time())
+# timestamp around sorts
+print("\r\nMerge Sort...")
+print(datetime.now().time())
+ms = mergeSort(l)
+print(datetime.now().time())
+print("\r\nSelection Sort...")
+print(datetime.now().time())
+ss = selectionSort(l)
+print(datetime.now().time())
+print(("\r\nSorted lists the same? %s\r\n") % str(ms == ss))

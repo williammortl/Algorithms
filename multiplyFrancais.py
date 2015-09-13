@@ -5,14 +5,14 @@
 # python multiplyFrancais.py 7 7
 
 # imports
+from math import floor
 import sys
-import math
 
 # multiply a la francais
 def multiplyFrancais(x, y):
 	ret = 0
 	if (y != 0):
-		z = multiplyFrancais(x, int(math.floor(y / 2)))
+		z = multiplyFrancais(x, int(floor(y / 2)))
 		ret = 2 * z
 		if ((y % 2) != 0):
 			ret = ret + x

@@ -5,7 +5,6 @@
 # python heap.py + "9,111,2,31,7,0,5,4,3,1,100001,32,31,27,16,15,999,3,3,3,3,100000000,7"
 
 # imports
-import copy
 import sys
 
 # get the parent of the node at i
@@ -135,23 +134,23 @@ if __name__ == "__main__":
 	else:
 		maxOrMin = "Min" if sys.argv[1].strip() == "-" else "Max"
 		heapList = map(int, sys.argv[2].split(","))
-		print(("\r\nBuilding a heap from:\r\n%s") % str(heapList))
+		print(("\r\nBuilding a heap from:\r\n%s\r\n") % str(heapList))
 		comparator = minComparator if (maxOrMin == "Min") else maxComparator
 		heapList = buildHeap(heapList, comparator)
-		print(("%s heap:\r\n%s") % (maxOrMin, str(heapList)))
+		print(("%s heap:\r\n%s\r\n") % (maxOrMin, str(heapList)))
 		numberToInsert = 777777777777
 		heapList = insert(heapList, numberToInsert, comparator)
-		print(("Heap after inserting %s:\r\n%s") % (str(numberToInsert), str(heapList)))
+		print(("Heap after inserting %s:\r\n%s\r\n") % (str(numberToInsert), str(heapList)))
 		numberToInsert = -1
 		heapList = insert(heapList, numberToInsert, comparator)
-		print(("Heap after inserting %s:\r\n%s") % (str(numberToInsert), str(heapList)))
+		print(("Heap after inserting %s:\r\n%s\r\n") % (str(numberToInsert), str(heapList)))
 		heapList = delete(heapList, 0, comparator)
-		print(("Heap after deleting the root:\r\n%s") % (str(heapList)))
+		print(("Heap after deleting the root:\r\n%s\r\n") % (str(heapList)))
 		s = len(heapList)
 		heapList = delete(heapList, s / 2, comparator)
-		print(("Heap after deleting the midpoint:\r\n%s") % (str(heapList)))
+		print(("Heap after deleting the midpoint:\r\n%s\r\n") % (str(heapList)))
 		s = len(heapList)
 		heapList = delete(heapList, s - 1, comparator)
-		print(("Heap after deleting the last element:\r\n%s") % (str(heapList)))
+		print(("Heap after deleting the last element:\r\n%s\r\n") % (str(heapList)))
 		printHeap(heapList)
 		print("")

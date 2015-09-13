@@ -49,5 +49,5 @@ if __name__ == "__main__":
 			[change, C, S] = coinChange(amountToChange, currencies)
 			print(("\r\nC matrix:\r\n%s") % str(C))
 			print(("S matrix:\r\n%s") % str(S))
-			print(("\r\nChanging %s:\r\n%s") % (str(amountToChange), str(change)))
+			print(("\r\nChanging %s: %s") % (str(amountToChange), str(change)))
 			print(("Sum of coins: %s\r\n") % str(sum(change)))

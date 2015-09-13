@@ -5,10 +5,9 @@
 # python fermatTest.py 5
 
 # imports
+from modularExponentiation import modularExponentiation
 import sys
-import math
-import modularExponentiation
-import random
+from random import randint
 
 # Fermat's little theorem primality checker
 def fermatTest(N):
@@ -18,10 +17,10 @@ def fermatTest(N):
 	if (N <= 4):
 		numChecks = 2
 	else:
-		numChecks = random.randint(2, N - 2)
+		numChecks = randint(2, N - 2)
 	for i in range(1, numChecks):
-		a = random.randint(1, N - 1)
-		v = modularExponentiation.modularExponentiation(a, N - 1, N)
+		a = randint(1, N - 1)
+		v = modularExponentiation(a, N - 1, N)
 		if (v != 1):
 			ret = "composite"
 			break

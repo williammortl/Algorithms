@@ -5,8 +5,8 @@
 # python modularExponentiation.py 5 2 17
 
 # imports
-import sys
 import math
+import sys
 
 # modular exponentiation x ^ y mod N
 def modularExponentiation(x, y, N):

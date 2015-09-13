@@ -5,15 +5,15 @@
 # python division.py 49 7
 
 # imports
+from math import floor
 import sys
-import math
 
 # division algorithm
 def division(x, y):
 	q = 0
 	r = 0
 	if (x != 0):
-		(q, r) = division(int(math.floor(x / 2)), y)
+		(q, r) = division(int(floor(x / 2)), y)
 		q = 2 * q
 		r = 2 * r
 		if (x % 2 != 0):

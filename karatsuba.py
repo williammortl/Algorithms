@@ -5,8 +5,8 @@
 # python karatsuba.py 13149 7913 10 3
 
 # imports
-import sys
 import math
+import sys
 
 # Karatsuba Multiplication Algorithm
 def karatsuba(x, y, B, m):

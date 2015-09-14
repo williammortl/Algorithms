@@ -7,8 +7,8 @@
 from eratosthenes import eratosthenes
 from fermatTest import fermatTest
 from math import pow
-import sys
 from random import randint
+import sys
 
 # Prime Guessing Algorithm
 def guessPrime(digits):
@@ -27,13 +27,18 @@ def guessPrime(digits):
 		numTries += 1
 	return (p, numTries)
 
-# Pick prime using Sieve of Eratosthenes Algorithm
-def pickPrime(digits):
+# select n primes
+def pickPrimes(digits, n):
 	rangeFrom = int(pow(10, digits - 1))
 	rangeTo = int(pow(10, digits)) - 1
 	primes = eratosthenes(rangeFrom, rangeTo)
-	return primes[randint(0, len(primes) - 1)]
-
+	ret = []
+	for i in range(0, n):
+		r = randint(0, len(primes) - 1)
+		ret.append(primes[r])
+		del primes[r]
+	return ret
+	
 # main entry point
 if __name__ == "__main__":
 	if (len(sys.argv) < 2):
@@ -47,5 +52,5 @@ if __name__ == "__main__":
 		else:
 			(p, numTries) = guessPrime(digits)
 			print(("\r\nGuessed prime number: %s found in %s tries") % (str(p), str(numTries)))
-			p = pickPrime(digits)
-			print(("\r\nPicked prime number using Sieve of Eratosthenes: %s\r\n") % str(p))
+			p = pickPrimes(digits, 1)
+			print(("\r\nPicked prime number using Sieve of Eratosthenes: %s\r\n") % str(p[0]))

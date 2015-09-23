@@ -7,7 +7,7 @@
 from copy import deepcopy
 from eratosthenes import eratosthenes
 import euclid
-from findPrime import pickPrimes
+from findPrime import guessPrime
 import math
 from modularExponentiation import modularExponentiation
 from random import randint
@@ -20,12 +20,12 @@ def generateKeys(p, q):
 	n = p * q
 	totient = (p -1) * (q - 1)
 	
-	# get a public key prime number s.t. gcd(e, totient) = 1
-	primes = eratosthenes(min(p, q), totient)
-	while (e < 3):
-		e = primes[randint(0, len(primes) - 1)]
-		if (euclid.euclid(e, totient) != 1):
-			e = -1
+	# get a public key prime number e s.t. e in [3, totient)
+	# 	and gcd(e, totient) = 1
+	e = 0
+	while ((e < 3) or (e >= totient) or (euclid.euclid(e, totient) != 1)):
+		d = randint(len(str(p)), len(str(totient)))
+		(e, tries) = guessPrime(d)
 
 	# get a private key prime number s.t. e * d = 1 mod totient 
 	(xp, yp, factor) = euclid.extEuclid(e, totient)
@@ -48,13 +48,18 @@ if __name__ == "__main__":
 		print("Example: python RSA.py 3 \"1001, 43, 67, 6, 104, 10987, 777\"\r\n")
 	else:
 		digits = int(sys.argv[1])
-		m = map(int, sys.argv[2].split(","))
-		print("\r\nSelecting p and q...")
-		pq = pickPrimes(digits, 2)
-		print(("p: %s, q: %s\r\n") % (str(pq[0]), str(pq[1])))
-		print("Generating keys...")
-		(e, d, n, totient) = generateKeys(pq[0], pq[1])
-		print(("Public key: %s, private key: %s, n: %s, totient: %s\r\n") % (str(e), str(d), str(n), str(totient)))
+		m = map(long, sys.argv[2].split(","))
+		print("\r\nSelecting p and q...\r\n")
+		(p, tries) = guessPrime(digits)
+		(q, tries) = guessPrime(digits)
+		print(("p: %s") % str(p))
+		print(("q: %s\r\n") % str(q))
+		print("Generating keys...\r\n")
+		(e, d, n, totient) = generateKeys(p, q)
+		print(("Public key: %s") % str(e))
+		print(("Private key: %s") % str(d))
+		print(("n: %s") % str(n))
+		print(("Totient: %s\r\n") % str(totient))
 		print("Encrypting & Decrypting...\r\n")
 		c = crypt(m, e, n)
 		mp = crypt(c, d, n)

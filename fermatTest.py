@@ -10,14 +10,10 @@ import sys
 from random import randint
 
 # Fermat's little theorem primality checker
-def fermatTest(N):
+def fermatTest(N, numChecks = 10):
 	if (N <= 1):
 		return ("neither", 0)
 	ret = "prime"
-	if (N <= 4):
-		numChecks = 2
-	else:
-		numChecks = randint(2, N - 2)
 	for i in range(1, numChecks):
 		a = randint(1, N - 1)
 		v = modularExponentiation(a, N - 1, N)

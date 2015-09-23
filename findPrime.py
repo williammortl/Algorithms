@@ -5,30 +5,35 @@
 
 # imports
 from eratosthenes import eratosthenes
-from fermatTest import fermatTest
 from math import pow
+from millerRabin import millerRabin
 from random import randint
 import sys
 
-# Prime Guessing Algorithm
-def guessPrime(digits):
+# Prime Candidate Algorithm
+def primeCandidate(digits):
 	primeEnds = [1, 3, 7, 9]
 	rangeFrom = int(pow(10, digits - 2))
 	rangeTo = int(pow(10, digits - 1)) - 1
+	start = randint(rangeFrom, rangeTo)
+	ending = primeEnds[randint(0, 3)]
+	p = int(str(start) + str(ending))
+	return p
+
+# Prime Guessing Algorithm
+def guessPrime(digits):
 	foundPrime = False
 	numTries = 0
 	while (foundPrime == False):
-		start = randint(rangeFrom, rangeTo)
-		ending = primeEnds[randint(0, 3)]
-		p = int(str(start) + str(ending))
-		(testResult, numChecks) = fermatTest(p)
+		numTries += 1
+		p = primeCandidate(digits)
+		(testResult, numChecks) = millerRabin(p)
 		if (testResult == "prime"):
 			foundPrime = True
-		numTries += 1
 	return (p, numTries)
 
 # select n primes
-def pickPrimes(digits, n):
+def sievePrimes(digits, n):
 	rangeFrom = int(pow(10, digits - 1))
 	rangeTo = int(pow(10, digits)) - 1
 	primes = eratosthenes(rangeFrom, rangeTo)
@@ -52,5 +57,5 @@ if __name__ == "__main__":
 		else:
 			(p, numTries) = guessPrime(digits)
 			print(("\r\nGuessed prime number: %s found in %s tries") % (str(p), str(numTries)))
-			p = pickPrimes(digits, 1)
-			print(("\r\nPicked prime number using Sieve of Eratosthenes: %s\r\n") % str(p[0]))
+			p = sievePrimes(digits, 1)
+			print(("\r\nSieved prime number using Sieve of Eratosthenes: %s\r\n") % str(p[0]))

@@ -20,6 +20,7 @@ with open(fileName, "r") as f:
 			line = line.translate(None, "\"")
 			fields = line.split(",")
 			values.append(float(fields[1]))
+values.reverse()
 
 # transform to diff
 diff = [0]

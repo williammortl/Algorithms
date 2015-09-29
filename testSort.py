@@ -10,7 +10,7 @@ from selectionSort import selectionSort
 import sys
 
 # build random list
-n = input("\r\nHow long of a list? ")
+n = int(raw_input("\r\nHow long of a list? "))
 l = []
 for i in range(0, n):
 	l.append(randint(0, 10 * n))

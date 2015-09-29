@@ -10,7 +10,7 @@ from random import randint
 import sys
 
 # test numbers
-n = input("\r\nHow many tests? ")
+n = int(raw_input("\r\nHow many tests? "))
 for i in range(0, n):
 	disagreements = []
 	candidate = primeCandidate(randint(1, 7))

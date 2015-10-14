@@ -9,7 +9,6 @@ import sys
 
 # read CSV file
 fileName = raw_input("\r\nWhich NASDAQ history CSV file? ")
-print(fileName)
 values = []
 skip = True
 with open(fileName, "r") as f:

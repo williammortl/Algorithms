@@ -92,7 +92,7 @@ if __name__ == "__main__":
 	for i in range(0, len(sortedWords)):
 		sortedWordsDictionaries[len(sortedWords[i]) - 1][sortedWords[i]] = [-1, []]
 
-	# spin through dictionaries and build max paths
+	# spin through words and build max paths in dictionary
 	for i in range(0, len(sortedWords)):
 		recurseLongestPath(sortedWords[i], sortedWordsDictionaries)
 

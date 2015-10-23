@@ -5,8 +5,8 @@
 
 # imports
 from copy import deepcopy
-from eratosthenes import eratosthenes
-import euclid
+from euclid import euclid
+from euclid import extEuclid
 from findPrime import guessPrime
 import math
 from modularExponentiation import modularExponentiation
@@ -23,12 +23,12 @@ def generateKeys(p, q):
 	# get a public key prime number e s.t. e in [3, totient)
 	# 	and gcd(e, totient) = 1
 	e = 0
-	while ((e < 3) or (e >= totient) or (euclid.euclid(e, totient) != 1)):
-		d = randint(len(str(p)), len(str(totient)))
-		(e, tries) = guessPrime(d)
+	while ((e < 3) or (e >= totient) or (euclid(e, totient) != 1)):
+		digits = randint(len(str(p)), len(str(totient)))
+		(e, tries) = guessPrime(digits)
 
 	# get a private key prime number s.t. e * d = 1 mod totient 
-	(xp, yp, factor) = euclid.extEuclid(e, totient)
+	(xp, yp, factor) = extEuclid(e, totient)
 	d = yp % totient
 
 	return (e, d, n, totient)

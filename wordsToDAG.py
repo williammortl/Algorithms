@@ -5,6 +5,7 @@
 # Coded for Python 2.7.9
 
 # imports
+from copy import deepcopy
 import sys
 
 # size comparators
@@ -22,7 +23,10 @@ def recurseLongestPath(wordToCheck, dictionaries):
 	lenWord = len(wordToCheck)
 
 	# check for base case
-	if (lenWord > 1):
+	if (lenWord == 1):
+			dictionaries[0][wordToCheck][0] = 0
+			dictionaries[0][wordToCheck][1] = []
+	elif (lenWord > 1):
 		if (dictionaries[lenWord - 1][wordToCheck][0] >= 0):
 			retLongestPath = dictionaries[lenWord - 1][wordToCheck][1]
 		elif (dictionaries[lenWord - 1][wordToCheck][0] == -1):
@@ -46,7 +50,7 @@ def recurseLongestPath(wordToCheck, dictionaries):
 				# check to see if child word exists
 				if (wordToCheckRecurse in dictionaries[lenWord - 2]):
 					pathToCheck = recurseLongestPath(wordToCheckRecurse, dictionaries)
-					pathToCheck.extend([wordToCheckRecurse])
+					pathToCheck.append(wordToCheckRecurse)
 					pathToCheck = list(set(pathToCheck))
 					pathToCheck = sorted(pathToCheck, cmp = wordSizeComparatorSmallFirst)
 
@@ -59,29 +63,31 @@ def recurseLongestPath(wordToCheck, dictionaries):
 			dictionaries[lenWord - 1][wordToCheck][1] = bestPath
 			retLongestPath = bestPath
 
-	return retLongestPath
+	return deepcopy(retLongestPath)
 
 # main entry point
 if __name__ == "__main__":
 
-	# read the file
+	# read the file, eliminate duplicate words, eliminate sorted words
 	fileName = raw_input("\r\nWhich wordlist file? ")
-	sortedWords = []
-	sortedToWords = {}
+	words = []
 	with open(fileName, "r") as f:
 		for line in f:
 			line = line.translate(None, "\n").upper()
-			sortedWord = ''.join(sorted(line))
-			sortedWords.append(sortedWord)
-			if (sortedWord in sortedToWords):
-				sortedToWords[sortedWord].append(line)
-			else:
-				sortedToWords[sortedWord] = [line]
-
-	# remove duplicates from sortedWords
+			words.append(line)
+	words = list(set(words))
+	sortedWords = []
+	sortedToWords = {}
+	for word in words:
+		sortedWord = ''.join(sorted(word))
+		sortedWords.append(sortedWord)
+		if (sortedWord in sortedToWords):
+			sortedToWords[sortedWord].append(word)
+		else:
+			sortedToWords[sortedWord] = [word]
 	sortedWords = list(set(sortedWords))
 
-	# sort by length (biggest first)
+	# sort words by length (biggest first)
 	sortedWords = sorted(sortedWords, cmp = wordSizeComparatorBigFirst)
 	maxLength = len(sortedWords[0])
 
@@ -89,30 +95,29 @@ if __name__ == "__main__":
 	sortedWordsDictionaries = []
 	for i in range(0, maxLength):
 		sortedWordsDictionaries.append({})
-	for i in range(0, len(sortedWords)):
-		sortedWordsDictionaries[len(sortedWords[i]) - 1][sortedWords[i]] = [-1, []]
+	for sortedWord in sortedWords:
+		sortedWordsDictionaries[len(sortedWord) - 1][sortedWord] = [-1, []]
 
 	# spin through words and build max paths in dictionary
-	for i in range(0, len(sortedWords)):
-		recurseLongestPath(sortedWords[i], sortedWordsDictionaries)
+	for sortedWord in sortedWords:
+		recurseLongestPath(sortedWord, sortedWordsDictionaries)
 
 	# spin through dictionaries find max path
-	max3Paths = [[0,[]], [0,[]], [0,[]]]
-	for i in range(0, len(sortedWords)):
-		wordToCheck = sortedWords[i]
-		lenPathWordToCheck = sortedWordsDictionaries[len(wordToCheck) - 1][wordToCheck][0]
-		for j in range(0, 3):
-			if (lenPathWordToCheck > max3Paths[j][0]):
-				max3Paths[j][0] = lenPathWordToCheck
-				max3Paths[j][1] = wordToCheck
+	maxPaths = [[0,[]], [0,[]], [0,[]]]
+	for sortedWord in sortedWords:
+		lenPathWordToCheck = sortedWordsDictionaries[len(sortedWord) - 1][sortedWord][0]
+		for path in maxPaths:
+			if (lenPathWordToCheck > path[0]):
+				path[0] = lenPathWordToCheck
+				path[1] = sortedWord
 				break
 
 	# print word path
 	print("\r\n3 Max Word Paths:")
-	for i in range(0, 3):
-		maxPath = sortedWordsDictionaries[len(max3Paths[i][1]) - 1][max3Paths[i][1]][1]
-		maxPath = map(lambda x: sortedToWords[x], maxPath)
-		print(("-----------------\r\n\r\nLength: %s\r\n") % str(len(maxPath)))
-		for j in range(0, len(maxPath)):
-			print (("Word(s): %s") % str(maxPath[j]))
+	for path in maxPaths:
+		thePath = sortedWordsDictionaries[len(path[1]) - 1][path[1]][1]
+		thePath = map(lambda x: sortedToWords[x], thePath)
+		print(("-----------------\r\n\r\nLength: %s\r\n") % str(len(thePath)))
+		for word in thePath:
+			print (("Word(s): %s") % word)
 		print("")

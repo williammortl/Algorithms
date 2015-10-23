@@ -100,7 +100,7 @@ if __name__ == "__main__":
 
 	# spin through words and build max paths in dictionary
 	for sortedWord in sortedWords:
-		recurseLongestPath(sortedWord, sortedWordsDictionaries)
+		path = recurseLongestPath(sortedWord, sortedWordsDictionaries)
 
 	# spin through dictionaries find max path
 	maxPaths = [[0,[]], [0,[]], [0,[]]]
@@ -117,7 +117,8 @@ if __name__ == "__main__":
 	for path in maxPaths:
 		thePath = sortedWordsDictionaries[len(path[1]) - 1][path[1]][1]
 		thePath = map(lambda x: sortedToWords[x], thePath)
-		print(("-----------------\r\n\r\nLength: %s\r\n") % str(len(thePath)))
+		print(("-----------------\r\n\r\nLength: %s\r\n") % str(len(thePath) + 1))
 		for word in thePath:
 			print (("Word(s): %s") % word)
+		print (("Word(s): %s") % sortedToWords[path[1]])
 		print("")

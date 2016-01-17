@@ -20,7 +20,7 @@ def longestCommonSubsequence(list1, list2):
 				results[i][j] = results[i - 1][j]
 			else:
 				results[i][j] = results[i][j - 1]
-	return extractCommonSubsequence(results, list1)
+	return [extractCommonSubsequence(results, list1), results]
 
 # walks through the results matrix and extracts the longest common subsequence
 def extractCommonSubsequence(results, rowList):
@@ -56,8 +56,15 @@ if __name__ == "__main__":
 		print("Usage: python lcs.py \"{comma seperated list of values to search}\" \"{comma seperated list of values to search}\"")
 		print("Example: python lcs.py \"9,111,2,31,1,0\" \"9,7,111,2,31,6,7,6,1,4\"\r\n")
 	else:
-		list1 = map(int, sys.argv[1].split(","))
-		list2 = map(int, sys.argv[2].split(","))
+		list1 = map(str, sys.argv[1].split(","))
+		list2 = map(str, sys.argv[2].split(","))
 		print(("\r\nLooking for longest common subsequence of:\r\n%s\r\n\r\n%s\r\n") % (str(list1), str(list2)))
-		lcs = longestCommonSubsequence(list1, list2)
-		print(("Longest common subsequence:\r\n%s\r\n") % str(lcs))
+		[lcs, results] = longestCommonSubsequence(list1, list2)
+		print("\r\nThe resultant matrix is:\r\n")
+		print(("%s%s") % (" ".ljust(12), str(list2)))
+		for i in range(0, len(results)):
+			rowName = "0".ljust(10)
+			if (i > 0):
+				rowName = str(list1[i - 1]).ljust(10)
+			print(("%s%s") % (rowName, str(results[i])))
+		print(("\r\nLongest common subsequence:\r\n%s\r\n") % str(lcs))

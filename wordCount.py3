@@ -7,30 +7,37 @@
 import sys
 import re
 
-# cleanse string, \n at new paragraph ONLY
-def loadAndCleanse(fileName):
-
-	# load
-	with open(fileName, "r") as f:
-		textBuffer = f.read()
+# cleanse string
+def cleanseText(textBuffer):
 
 	# cleanup paragraph breaks
-	textBuffer = textBuffer.replace("\r", "")
-	textBuffer = re.sub("([^\n])(\n)([^\n])", r"\1 \3", textBuffer)
-	textBuffer = re.sub("(\n)+", "\n", textBuffer)
-
-	# collapse repeated spaces
-	textBuffer = re.sub("( )+", " ", textBuffer)
+	textBuffer = textBuffer.replace(r"\r", "")
+	textBuffer = re.sub(r"([^\n])\n([^\n])", r"\1 \2", textBuffer)
+	textBuffer = re.sub(r"(\n)+", "\n", textBuffer)
 
 	# remove unwanted characters
-	textBuffer = re.sub("[!?]", ".", textBuffer)
+	textBuffer = re.sub(r"[!?]", ".", textBuffer)
 	textBuffer = re.sub(r"\.+", ".", textBuffer)
-	textBuffer = re.sub("[\"'()[\]{}/\`~@#$%^&*+=,<>|:]", "", textBuffer)
+	textBuffer = re.sub(r"[\"'()[\]{}/\`~@#$%^&$*+=,<>|:;]", " ", textBuffer)
 	
 	# hyphen fixes
-	textBuffer = textBuffer.replace(" - ", " ")
-	textBuffer = re.sub("([0-9]+)(-)([0-9a-zA-Z]+)", r"\1 \3", textBuffer)
+	textBuffer = textBuffer.replace(r" - ", " ")
 	
+	# collapse repeated spaces and tabs
+	textBuffer = re.sub(r"( )+", " ", textBuffer)
+	textBuffer = re.sub(r"(\t)+", " ", textBuffer)
+	
+	# generic abbreviation fixes
+	before = 0
+	after = len(textBuffer)
+	while (before != after):
+		before = len(textBuffer)
+		textBuffer = re.sub(r"([a-zA-Z])\.([a-zA-Z])", r"\1\2", textBuffer)
+		after = len(textBuffer)
+	
+	# specific abbreviation fixes
+	textBuffer = re.sub(r"(Dr|Mr|Ms|Drs|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)\.", r"\1", textBuffer)
+
 	return textBuffer
 
 # word count
@@ -41,9 +48,7 @@ def wordCount(textBuffer):
 
 # sentence count
 def sentenceCount(textBuffer):
-	semicolonCount = textBuffer.count(";")
-	periodCount = len(re.findall("\. [A-Z\n]", textBuffer))
-	return semicolonCount + periodCount
+	return len(re.findall(r"\. [A-Z\n]|\.\n", textBuffer))
 
 # paragraph count
 def paragraphCount(textBuffer):
@@ -56,11 +61,19 @@ if __name__ == "__main__":
 		print("Usage: python3 wordCount.py3 {text file to parse}")
 		print("Example: python3 wordCount.py3 textFile.txt\r\n")
 	else:
+		
+		# load file
 		fileName = sys.argv[1]
-		textBuffer = loadAndCleanse(fileName)
+		with open(fileName, "r") as f:
+			textBuffer = f.read()
+
+		# cleanse and parse
+		textBuffer = cleanseText(textBuffer)
 		wCount = wordCount(textBuffer)
 		sCount = sentenceCount(textBuffer)
 		pCount = paragraphCount(textBuffer)
+		
+		# output
 		print("\r\nCLEANSED TEXT: \r\n")
 		print(textBuffer)
 		print(("\r\nRESULTS: \r\n\r\nParagraphs: %s, Sentences: %s, Words: %s\r\n") %(pCount, sCount, wCount))

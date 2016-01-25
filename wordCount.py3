@@ -24,8 +24,7 @@ def cleanseText(textBuffer):
 	textBuffer = textBuffer.replace(r" - ", " ")
 	
 	# collapse repeated spaces and tabs
-	textBuffer = re.sub(r"( )+", " ", textBuffer)
-	textBuffer = re.sub(r"(\t)+", " ", textBuffer)
+	textBuffer = re.sub(r"[ \t]+", " ", textBuffer)
 	
 	# generic abbreviation fixes
 	before = 0
@@ -36,7 +35,7 @@ def cleanseText(textBuffer):
 		after = len(textBuffer)
 	
 	# specific abbreviation fixes
-	textBuffer = re.sub(r"(Dr|Mr|Ms|Drs|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)\.", r"\1", textBuffer)
+	textBuffer = re.sub(r"(Dr|Mr|Ms|Mrs|Drs|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)\.", r"\1", textBuffer)
 
 	return textBuffer
 
@@ -48,7 +47,7 @@ def wordCount(textBuffer):
 
 # sentence count
 def sentenceCount(textBuffer):
-	return len(re.findall(r"\. [A-Z\n]|\.\n", textBuffer))
+	return len(re.findall(r"\.( )*[A-Z\n]", textBuffer))
 
 # paragraph count
 def paragraphCount(textBuffer):

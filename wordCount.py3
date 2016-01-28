@@ -4,28 +4,42 @@
 # python3 wordCount.py3 textFile.txt
 
 # imports
+from copy import deepcopy
 import sys
 import re
+
+# get all counts
+def wordSentenceParagraphCounts(textBuffer):
+	cleanText = cleanseText(deepcopy(textBuffer))
+	return [wordCount(cleanText), sentenceCount(cleanText), paragraphCount(cleanText), cleanText]
 
 # cleanse string
 def cleanseText(textBuffer):
 
+	#check for final paragraph break, add if not found
+	if (textBuffer[-1] != "\n"):
+		textBuffer += "\n"
+
 	# cleanup paragraph breaks
 	textBuffer = textBuffer.replace(r"\r", "")
 	textBuffer = re.sub(r"([^\n])\n([^\n])", r"\1 \2", textBuffer)
-	textBuffer = re.sub(r"(\n)+", "\n", textBuffer)
+	textBuffer = re.sub(r"[\n]+", "\n", textBuffer)
 
 	# remove unwanted characters
 	textBuffer = re.sub(r"[!?]", ".", textBuffer)
 	textBuffer = re.sub(r"\.+", ".", textBuffer)
-	textBuffer = re.sub(r"[\"'()[\]{}/\`~@#$%^&$*+=,<>|:;]", " ", textBuffer)
-	
+	textBuffer = re.sub(r"[\"'()[\]{}/\`~@#$%^&$*+=,<>|:;]", "", textBuffer)
+	textBuffer = re.sub(r"[\s]+\.", ".", textBuffer)
+
 	# hyphen fixes
-	textBuffer = textBuffer.replace(r" - ", " ")
-	
-	# collapse repeated spaces and tabs
+	textBuffer = re.sub(r"[-]+", r"-", textBuffer)
+	textBuffer = re.sub(r"[\s]+-[\s]+", r" ", textBuffer)
+	textBuffer = re.sub(r"-[\s]*[.]+", r".", textBuffer)
+
+	# collapse repeated whitespace
 	textBuffer = re.sub(r"[ \t]+", " ", textBuffer)
-	
+	textBuffer = re.sub(r"[ \t\n]+\.", ".", textBuffer)
+
 	# generic abbreviation fixes
 	before = 0
 	after = len(textBuffer)
@@ -33,7 +47,7 @@ def cleanseText(textBuffer):
 		before = len(textBuffer)
 		textBuffer = re.sub(r"([a-zA-Z])\.([a-zA-Z])", r"\1\2", textBuffer)
 		after = len(textBuffer)
-	
+
 	# specific abbreviation fixes
 	textBuffer = re.sub(r"(Dr|Mr|Ms|Mrs|Drs|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)\.", r"\1", textBuffer)
 
@@ -67,12 +81,9 @@ if __name__ == "__main__":
 			textBuffer = f.read()
 
 		# cleanse and parse
-		textBuffer = cleanseText(textBuffer)
-		wCount = wordCount(textBuffer)
-		sCount = sentenceCount(textBuffer)
-		pCount = paragraphCount(textBuffer)
-		
+		[wCount, sCount, pCount, cleanText] = wordSentenceParagraphCounts(textBuffer)
+
 		# output
 		print("\r\nCLEANSED TEXT: \r\n")
-		print(textBuffer)
+		print(cleanText)
 		print(("\r\nRESULTS: \r\n\r\nParagraphs: %s, Sentences: %s, Words: %s\r\n") %(pCount, sCount, wCount))

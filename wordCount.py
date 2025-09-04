@@ -1,6 +1,6 @@
 # Word/Sentence/Paragraph Counter
 # Implemented by William M Mortl
-# python3 wordCount.py3 textFile.txt
+# python3 wordCount.py3 wordList.txt
 
 # imports
 from copy import deepcopy

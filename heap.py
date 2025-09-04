@@ -1,6 +1,5 @@
 # Heap Building Algorithms
 # Implemented by William M Mortl
-# Coded for Python 2.7.9
 # To build heap: O(n)
 # python heap.py + "9,111,2,31,7,0,5,4,3,1,100001,32,31,27,16,15,999,3,3,3,3,100000000,7"
 
@@ -12,7 +11,7 @@ def parent(list, i):
 	if (i <= 0):
 		return -1
 	else:
-		return (i - 1) / 2
+		return (i - 1) // 2
 
 # left child of the node at i
 def left(list, i):
@@ -28,7 +27,7 @@ def right(list, i):
 
 # is this node left child? if not we know we're the root or a right node	
 def isLeftNode(list, i):
-	return true if (left(list, parent(list, i)) == i) else false
+	return True if (left(list, parent(list, i)) == i) else False
 
 # a maximum heap comparator
 def maxComparator(l, r):
@@ -69,8 +68,8 @@ def heapify(list, i, comparator, s):
 # converts a list to a heap
 def buildHeap(listToHeap, comparator):
 	s = len(listToHeap)
-	midpoint = (s / 2) - 1
-	for i in xrange(midpoint, -1, -1):
+	midpoint = (s // 2) - 1
+	for i in range(midpoint, -1, -1):
 		listToHeap = heapify(listToHeap, i, comparator, s)
 	return listToHeap
 
@@ -133,24 +132,24 @@ if __name__ == "__main__":
 		print("Example: python heap.py + \"9,111,2,31,1,0\"\r\n")
 	else:
 		maxOrMin = "Min" if sys.argv[1].strip() == "-" else "Max"
-		heapList = map(int, sys.argv[2].split(","))
-		print(("\r\nBuilding a heap from:\r\n%s\r\n") % str(heapList))
+		heapList = list(map(int, sys.argv[2].split(",")))
+		print("\r\nBuilding a heap from:\r\n{}\r\n".format(heapList))
 		comparator = minComparator if (maxOrMin == "Min") else maxComparator
 		heapList = buildHeap(heapList, comparator)
-		print(("%s heap:\r\n%s\r\n") % (maxOrMin, str(heapList)))
+		print("{} heap:\r\n{}\r\n".format(maxOrMin, heapList))
 		numberToInsert = 777777777777
 		heapList = insert(heapList, numberToInsert, comparator)
-		print(("Heap after inserting %s:\r\n%s\r\n") % (str(numberToInsert), str(heapList)))
+		print("Heap after inserting {}:\r\n{}\r\n".format(numberToInsert, heapList))
 		numberToInsert = -1
 		heapList = insert(heapList, numberToInsert, comparator)
-		print(("Heap after inserting %s:\r\n%s\r\n") % (str(numberToInsert), str(heapList)))
+		print("Heap after inserting {}:\r\n{}\r\n".format(numberToInsert, heapList))
 		heapList = delete(heapList, 0, comparator)
-		print(("Heap after deleting the root:\r\n%s\r\n") % (str(heapList)))
+		print("Heap after deleting the root:\r\n{}\r\n".format(heapList))
 		s = len(heapList)
-		heapList = delete(heapList, s / 2, comparator)
-		print(("Heap after deleting the midpoint:\r\n%s\r\n") % (str(heapList)))
+		heapList = delete(heapList, s // 2, comparator)
+		print("Heap after deleting the midpoint:\r\n{}\r\n".format(heapList))
 		s = len(heapList)
 		heapList = delete(heapList, s - 1, comparator)
-		print(("Heap after deleting the last element:\r\n%s\r\n") % (str(heapList)))
+		print("Heap after deleting the last element:\r\n{}\r\n".format(heapList))
 		printHeap(heapList)
 		print("")

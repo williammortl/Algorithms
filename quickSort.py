@@ -1,6 +1,5 @@
 # Quick Sort Algorithm
 # Implemented by William M Mortl
-# Coded for Python 2.7.9
 # O(n ^ 2), however, this on average is the fastest sorting algorithm
 # python quickSort.py "9,111,2,31,7,0,5,4,3,1,100001,32,31,27,16,15,999,3,3,3,3,100000000,7"
 
@@ -43,10 +42,10 @@ if __name__ == "__main__":
 		print("Usage: python quickSort.py \"{comma seperated list of values to sort}\"")
 		print("Example: python quickSort.py \"9,111,2,31,1,0\"\r\n")
 	else:
-		listToSort = map(int, sys.argv[1].split(","))
-		print(("\r\nSorting:\r\n%s\r\n") % str(listToSort))
+		listToSort = list(map(int, sys.argv[1].split(",")))
+		print("\r\nSorting:\r\n{}\r\n".format(listToSort))
 		mergeSorted = mergeSort(deepcopy(listToSort))
 		quickSorted = quickSort(deepcopy(listToSort), 0, len(listToSort) - 1)
-		print(("Merge Sorted list:\r\n%s\r\n") % str(mergeSorted))
-		print(("Quick Sorted list:\r\n%s\r\n") % str(quickSorted))
-		print(("Lists equal? %s\r\n") % str(mergeSorted == quickSorted))
+		print("Merge Sorted list:\r\n{}\r\n".format(mergeSorted))
+		print("Quick Sorted list:\r\n{}\r\n".format(quickSorted))
+		print("Lists equal? {}\r\n".format(mergeSorted == quickSorted))

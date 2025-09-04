@@ -1,6 +1,5 @@
 # Read stock quotes from NASDAQ history files, find max subarrary
 # Implemented by William M Mortl
-# Coded for Python 2.7.9
 
 # imports
 from maximumSubarray import maximumSubarray
@@ -8,15 +7,15 @@ import os
 import sys
 
 # read CSV file
-fileName = raw_input("\r\nWhich NASDAQ history CSV file? ")
+fileName = input("\r\nWhich NASDAQ history CSV file? ")
 values = []
 skip = True
 with open(fileName, "r") as f:
 	for line in f:
-		if (skip == True):
-			skip = False
-		else:
-			line = line.translate(None, "\"")
+			if skip:
+				skip = False
+			else:
+				line = line.replace('"', '')
 			fields = line.split(",")
 			values.append(float(fields[1]))
 values.reverse()

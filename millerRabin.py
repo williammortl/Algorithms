@@ -1,6 +1,5 @@
 # Miller-Rabin Primality Test Algorithm
 # Miller-Rabin Primality Test Algorithm Implemented by William M Mortl
-# Coded for Python 2.7.9
 # O(k * (log n) ^ 3)
 # python millerRabin.py 5
 

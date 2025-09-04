@@ -1,6 +1,5 @@
 # Gift Wrapping Convex Hull Algorithm
 # Implemented by William M Mortl
-# Coded for Python 2.7.9
 # O(n log n)
 # python convexHull.py "[1,1],[3,7],[9,9],[10,10],[0,0], [2, 2], [10,2], [-10, 1], [-5,6], [1,1]"
 
@@ -58,7 +57,7 @@ def removeDuplicatePoints(points):
 	points.sort()
 	s = len(points)
 	last = points[s - 1]
-	for i in xrange(s - 2, -1, -1):
+	for i in range(s - 2, -1, -1):
 		if ((last[0] == points[i][0]) and (last[1] == points[i][1])):
 			del points[i]
 		else:
@@ -90,8 +89,8 @@ if __name__ == "__main__":
 		if (len(hullPoints) < 4):
 			print("\r\nYou must enter at least 5 points!\r\n")
 		else:
-			print(("\r\nLooking for the convex hull of points:\r\n%s\r\n") % str(hullPoints))
-			[hullPoints, bottomPoint, sortedPoints] = convexHull(hullPoints)
-			print(("Bottom most point:\r\n%s\r\n") % str(bottomPoint))
-			print(("Counterclockwise radially sorted points:\r\n%s\r\n") % str(sortedPoints))
-			print(("Convex hull points:\r\n%s\r\n") % str(hullPoints))
+			print("\r\nLooking for the convex hull of points:\r\n{}\r\n".format(hullPoints))
+			hullPoints, bottomPoint, sortedPoints = convexHull(hullPoints)
+			print("Bottom most point:\r\n{}\r\n".format(bottomPoint))
+			print("Counterclockwise radially sorted points:\r\n{}\r\n".format(sortedPoints))
+			print("Convex hull points:\r\n{}\r\n".format(hullPoints))

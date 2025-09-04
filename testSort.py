@@ -1,6 +1,5 @@
 # Sorting Test Program
 # Implemented by William M Mortl
-# Coded for Python 2.7.9
 
 # imports
 from datetime import datetime
@@ -10,7 +9,7 @@ from selectionSort import selectionSort
 import sys
 
 # build random list
-n = int(raw_input("\r\nHow long of a list? "))
+n = int(input("\r\nHow long of a list? "))
 l = []
 for i in range(0, n):
 	l.append(randint(0, 10 * n))

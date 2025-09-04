@@ -1,6 +1,5 @@
 # Fermat's Little Theorem Primality Test Algorithm
 # Implemented by William M Mortl
-# Coded for Python 2.7.9
 # O(log n * (log m + log n) ^ 2)
 # python fermatTest.py 5
 

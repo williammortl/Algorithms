@@ -1,6 +1,5 @@
 # RSA Key-Finding & Encryption/Decryption Algorithms
 # Implemented by William M Mortl
-# Coded for Python 2.7.9
 # python RSA.py 3 "1001, 43, 67, 6, 104, 10987, 777"
 
 # imports
@@ -48,22 +47,22 @@ if __name__ == "__main__":
 		print("Example: python RSA.py 3 \"1001, 43, 67, 6, 104, 10987, 777\"\r\n")
 	else:
 		digits = int(sys.argv[1])
-		m = map(long, sys.argv[2].split(","))
+		m = list(map(int, sys.argv[2].split(",")))
 		print("\r\nSelecting p and q...\r\n")
 		(p, tries) = guessPrime(digits)
 		(q, tries) = guessPrime(digits)
-		print(("p: %s") % str(p))
-		print(("q: %s\r\n") % str(q))
+		print("p: {}".format(p))
+		print("q: {}\r\n".format(q))
 		print("Generating keys...\r\n")
 		(e, d, n, totient) = generateKeys(p, q)
-		print(("Public key: %s") % str(e))
-		print(("Private key: %s") % str(d))
-		print(("n: %s") % str(n))
-		print(("Totient: %s\r\n") % str(totient))
+		print("Public key: {}".format(e))
+		print("Private key: {}".format(d))
+		print("n: {}".format(n))
+		print("Totient: {}\r\n".format(totient))
 		print("Encrypting & Decrypting...\r\n")
 		c = crypt(m, e, n)
 		mp = crypt(c, d, n)
-		print(("Original: %s") % str(m))
-		print(("Encrypted: %s") % str(c))
-		print(("Decrypted: %s\r\n") % str(mp))
-		print(("Same? %s\r\n") % str(m == mp))
+		print("Original: {}".format(m))
+		print("Encrypted: {}".format(c))
+		print("Decrypted: {}\r\n".format(mp))
+		print("Same? {}\r\n".format(m == mp))

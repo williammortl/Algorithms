@@ -1,6 +1,5 @@
 # Longest Common Subsequence Algorithm
 # Implemented by William M Mortl
-# Coded for Python 2.7.9
 # O(n ^ 2)
 # python lcs.py "9,111,2,31,7,0,5,4,3,1,100001,32,31,27,16,15,999,3,3,3,3,100000000,7" "22,7,0,1,16,15,8,8,8,88,8,8,3,6,1,7"
 
@@ -56,8 +55,8 @@ if __name__ == "__main__":
 		print("Usage: python lcs.py \"{comma seperated list of values to search}\" \"{comma seperated list of values to search}\"")
 		print("Example: python lcs.py \"9,111,2,31,1,0\" \"9,7,111,2,31,6,7,6,1,4\"\r\n")
 	else:
-		list1 = map(str, sys.argv[1].split(","))
-		list2 = map(str, sys.argv[2].split(","))
+		list1 = list(map(str, sys.argv[1].split(",")))
+		list2 = list(map(str, sys.argv[2].split(",")))
 		print(("\r\nLooking for longest common subsequence of:\r\n%s\r\n\r\n%s\r\n") % (str(list1), str(list2)))
 		[lcs, results] = longestCommonSubsequence(list1, list2)
 		print("\r\nThe resultant matrix is:\r\n")

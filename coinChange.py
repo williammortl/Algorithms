@@ -1,6 +1,6 @@
 # Coin Change Algorithm
 # Implemented by William M Mortl
-# Coded for Python 2.7.9
+
 # O(coins * amount)
 # python coinChange.py 6 "1,4,3"
 
@@ -10,12 +10,13 @@ import sys
 # coin change algorithm, uses dynamic programming
 def coinChange(amount, coins):
 	adjAmount = int(amount * 100)
-	adjCoins = map(lambda x: int(x * 100), coins)
+	adjCoins = list(map(lambda x: int(x * 100), coins))
 	k = len(adjCoins)
 	C = [0] * (adjAmount + 1)
 	S = [0] * (adjAmount + 1)
 	for p in range(min(adjCoins), (adjAmount + 1)):
-		minVal = sys.maxint
+		minVal = float('inf')
+		coin = 0
 		for i in range(0, k):
 			if (adjCoins[i] <= p):
 				if ((C[p - adjCoins[i]] + 1) < minVal):
@@ -42,12 +43,12 @@ if __name__ == "__main__":
 		print("Example: python coinChange.py 3.37 \".5, .25, .10, .05, .01\"\r\n")
 	else:
 		amountToChange = float(sys.argv[1])
-		currencies = map(float, sys.argv[2].split(","))
+		currencies = list(map(float, sys.argv[2].split(",")))
 		if (min(currencies) > amountToChange):
 			print("\r\nCannot change, coins too big!\r\n")
 		else:
 			[change, C, S] = coinChange(amountToChange, currencies)
-			print(("\r\nC matrix:\r\n%s") % str(C))
-			print(("S matrix:\r\n%s") % str(S))
-			print(("\r\nChanging %s: %s") % (str(amountToChange), str(change)))
-			print(("Sum of coins: %s\r\n") % str(sum(change)))
+			print("\r\nC matrix:\r\n{}".format(C))
+			print("S matrix:\r\n{}".format(S))
+			print("\r\nChanging {}: {}".format(amountToChange, change))
+			print("Sum of coins: {}\r\n".format(sum(change)))

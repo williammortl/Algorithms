@@ -1,6 +1,5 @@
 # Word/Sentence/Paragraph Counter
 # Implemented by William M Mortl
-# Coded for Python 3.5.1
 # python3 wordCount.py3 textFile.txt
 
 # imports

@@ -1,6 +1,5 @@
 # Insertion Sort Algorithm
 # Implemented by William M Mortl
-# Coded for Python 2.7.9
 # O(n ^ 2)
 # python insertionSort.py "9,111,2,31,7,0,5,4,3,1,100001,32,31,27,16,15,999,3,3,3,3,100000000,7"
 
@@ -15,7 +14,7 @@ def insertionSort(listToSort):
 	itr = 1
 	while(itr < s):
 		valInsert = listToSort[itr]
-		for i in xrange((itr - 1), -1, -1):
+		for i in range((itr - 1), -1, -1):
 			valCompare = listToSort[i]
 			if (valCompare < valInsert):
 				listToSort[(i + 2) : (itr + 1)] = listToSort[(i + 1): (itr)]
@@ -31,13 +30,13 @@ def insertionSort(listToSort):
 if __name__ == "__main__":
 	if (len(sys.argv) < 2):
 		print("\r\nInsertion Sort by William M Mortl")
-		print("Usage: python insertionsSort.py \"{comma seperated list of values to sort}\"")
-		print("Example: python insertionsSort.py \"9,111,2,31,1,0\"\r\n")
+		print("Usage: python insertionSort.py \"{comma seperated list of values to sort}\"")
+		print("Example: python insertionSort.py \"9,111,2,31,1,0\"\r\n")
 	else:
-		listToSort = map(int, sys.argv[1].split(","))
-		print(("\r\nSorting:\r\n%s\r\n") % str(listToSort))
+		listToSort = list(map(int, sys.argv[1].split(",")))
+		print("\r\nSorting:\r\n{}\r\n".format(listToSort))
 		mergeSorted = mergeSort(deepcopy(listToSort))
 		insertionSorted = insertionSort(deepcopy(listToSort))
-		print(("Merge Sorted list:\r\n%s\r\n") % str(mergeSorted))
-		print(("Insertion Sorted list:\r\n%s\r\n") % str(insertionSorted))
-		print(("Lists equal? %s\r\n") % str(mergeSorted == insertionSorted))
+		print("Merge Sorted list:\r\n{}\r\n".format(mergeSorted))
+		print("Insertion Sorted list:\r\n{}\r\n".format(insertionSorted))
+		print("Lists equal? {}\r\n".format(mergeSorted == insertionSorted))

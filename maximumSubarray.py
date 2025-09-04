@@ -1,6 +1,5 @@
 # Maximum Subarray Algorithm
 # Implemented by William M Mortl
-# Coded for Python 2.7.9
 # O(n log n)
 # python maximumSubarray.py "-1,4,5,-1,-1,2,3,4,5,-4,-1,1"
 
@@ -51,9 +50,9 @@ if __name__ == "__main__":
 		print("Usage: python maximumSubarray.py \"{comma seperated list of numbers to analyze}\"")
 		print("Example: python maximumSubarray.py \"-1,4,5,-1,-1,2,3,4,5,-4,-1,1\"\r\n")
 	else:
-		l = map(int, sys.argv[1].split(","))
+		l = list(map(int, sys.argv[1].split(",")))
 		ms = maximumSubarray(l, 0, len(l) - 1)
 		print("\r\nThe maximum subarray of:")
-		print(("\r\n%s\r\n") % str(l))
+		print("\r\n{}\r\n".format(l))
 		print("is:")
-		print(("\r\n%s\r\n\r\nWhich sums to: %s\r\n") % (str(l[ms[0]:ms[1] + 1]), str(ms[2])))
+		print("\r\n{}\r\n\r\nWhich sums to: {}\r\n".format(l[ms[0]:ms[1] + 1], ms[2]))

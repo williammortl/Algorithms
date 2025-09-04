@@ -1,6 +1,5 @@
 # Karatsuba Multiplication Algorithm
 # Implemented by William M Mortl
-# Coded for Python 2.7.9
 # O(n ^ log2 3)
 # python karatsuba.py 13149 7913 10 3
 

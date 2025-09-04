@@ -1,6 +1,5 @@
 # Division Algorithm
 # Implemented by William M Mortl
-# Coded for Python 2.7.9
 # O(n ^ 2)
 # python division.py 49 7
 

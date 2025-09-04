@@ -1,23 +1,23 @@
 # Dijkstra's Algorithm
 # Implemented by William M Mortl
-# Coded for Python 2.7.9
 # O(|E| + |V|log|V|)
 # python python dijkstra.py 6 "[1,2,3],[2,2,1],[3,1,4],[1,6,99],[2,3,1],[3,4,5],[4,5,1],[5,6,14],[2,6,1]" 1 6
 
 # imports
 import sys
 
+# TODO: finish
+
 # dijsktra's algorithm
 def dijkstra(fromNode, toNode, adjMatrix):
 	numNodes = len(adjMatrix)
-	dist = [[sys.maxint, []]] * numNodes
+	dist = [[float('inf'), []]] * numNodes
 	visited = [0] * numNodes
-	for i in range(0, len(adjMatrix))
+	for i in range(0, len(adjMatrix)):
 		bestPathTo[i]
 	return []
 
-def dijsktraRecurse(currentNode, currentPath, visit, dist, adjMatrix):
-
+# def dijsktraRecurse(currentNode, currentPath, visit, dist, adjMatrix):
 
 # converts the string into an adjacency matrix
 def stringToAdjMatrix(totalNodes, strList):
@@ -41,6 +41,6 @@ if __name__ == "__main__":
 		adjMatrix = stringToAdjMatrix(int(sys.argv[1]), sys.argv[2])
 		fromNode = int(sys.argv[3])
 		toNode = int(sys.argv[4])
-		print(("\r\nLooking for the shortest path between nodes: %s and %s") % (str(fromNode), str(toNode)))
-		shortestPath = dijkstra(fromNode, toNode, adjMatrix)
-		print(("Shortest path\r\n%s\r\n") % str(shortestPath))
+	print("\r\nLooking for the shortest path between nodes: {} and {}".format(fromNode, toNode))
+	shortestPath = dijkstra(fromNode, toNode, adjMatrix)
+	print("Shortest path\r\n{}\r\n".format(shortestPath))

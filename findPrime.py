@@ -1,6 +1,5 @@
 # Prime Finding Algorithms
 # Implemented by William M Mortl
-# Coded for Python 2.7.9
 # python findPrime.py 4
 
 # imports
